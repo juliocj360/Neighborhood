@@ -1,0 +1,28 @@
+html {
+  background-color: grey;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+}
+
+#map {
+  height: 400px;
+  width: 400px;
+  margin: auto;
+  color: black;
+}
+
+.main {
+  width: 406px;
+  margin: auto;
+  background-color: black;
+  color: white;
+  padding-bottom: 100px;
+}

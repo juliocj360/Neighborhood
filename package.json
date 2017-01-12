@@ -1,0 +1,28 @@
+{
+  "name": "Neighborhood-API",
+  "version": "1.0.0",
+  "description": "See what is going on in the area.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "watch": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliocj360/Neighborhood-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juliocj360/Neighborhood-API/issues"
+  },
+  "homepage": "https://github.com/juliocj360/Neighborhood-API#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
