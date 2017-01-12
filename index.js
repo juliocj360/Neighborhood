@@ -8,7 +8,3 @@ app.listen(PORT, () => {
 });
 
 app.use(express.static('public'));
-
-app.get('/data', (req, res) => {
-  res.json('AIzaSyBeebyFKwnlKpo_H5m6sEy-osyCnlXrexw')
-});
