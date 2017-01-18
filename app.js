@@ -1,18 +1,16 @@
-var MongoClient = require('mongodb').MongoClient;
-var mongoClient = require('./mongoclient.js').mongoClient;
-var collectionName = 'testMarkers';
+const mongoClient = require('./mongoclient.js').mongoClient
+const collectionName = 'testMarkers'
 
-var url = "mongodb://localhost:27017/myproject";
-MongoClient.connect(url, function(err, db) {
+mongoClient((err, db) => {
   console.log("Connected correctly to server");
-  findDocuments(db, function() {
+  findDocuments(db, () => {
     db.close();
   });
-});
+})
 
-var findDocuments = function(db, callback) {
-  var collection = db.collection('testMarkers');
-  collection.find({}).toArray(function(err, docs) {
+const findDocuments = (db, callback) => {
+  const collection = db.collection(collectionName);
+  collection.find({}).toArray((err, docs) => {
     if (err) throw err;
     console.dir(docs);
     callback(docs);
@@ -20,23 +18,14 @@ var findDocuments = function(db, callback) {
   });
   console.log("Found the following records123");
   return collection;
-};
+}
 
 module.exports = {
   finder: findAll
-};
+}
 
 function findAll(callback) {
-  var values = [];
-  mongoClient(function(err, db) {
-  if (err) throw err;
-  var collection = db.collection(collectionName)
-    .find({})
-    .toArray(function(err, docs) {
-      if (err) throw err;
-      callback(docs);
-      db.close();
-    });
-});
-return values;
+  mongoClient((err, db) => {
+    findDocuments(db, callback);
+  });
 }
