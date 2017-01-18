@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/juliocj360/Neighborhood-API#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.20"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
