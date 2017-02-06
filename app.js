@@ -1,18 +1,16 @@
-var MongoClient = require('mongodb').MongoClient;
-var mongoClient = require('./mongoclient.js').mongoClient;
-var collectionName = 'testMarkers';
+const mongoClient = require('./mongoclient.js').mongoClient
+const collectionName = 'testMarkers'
 
-var url = "mongodb://localhost:27017/myproject";
-MongoClient.connect(url, function(err, db) {
+mongoClient((err, db) => {
   console.log("Connected correctly to server");
-  findDocuments(db, function() {
+  findDocuments(db, () => {
     db.close();
   });
-});
+})
 
-var findDocuments = function(db, callback) {
-  var collection = db.collection('testMarkers');
-  collection.find({}).toArray(function(err, docs) {
+const findDocuments = (db, callback) => {
+  const collection = db.collection(collectionName);
+  collection.find({}).toArray((err, docs) => {
     if (err) throw err;
     console.dir(docs);
     callback(docs);
@@ -20,23 +18,92 @@ var findDocuments = function(db, callback) {
   });
   console.log("Found the following records123");
   return collection;
-};
+}
+
+const findUsers = (db, callback) => {
+  const collection = db.collection('users');
+  collection.find({}).toArray((err, docs) => {
+    if (err) throw err;
+    console.dir(docs);
+    callback(docs);
+    db.close();
+  });
+  console.log("Found the following users");
+  return collection;
+}
 
 module.exports = {
-  finder: findAll
-};
+  finder: findAll,
+  delete: deleter,
+  add: adder,
+  userAdd: userAdder,
+  findUsers: queryUsers,
+  userUpdate: updater
+}
+
+function updater(object, callback) {
+  const namer = object.name;
+  const named = JSON.stringify(namer)
+  const newMood = object.mood;
+  const mooder = JSON.stringify(newMood)
+  console.log('1')
+  mongoClient((err, db) => {
+    console.log('2')
+    var collection = db.collection('users');
+    collection.update(
+      { name: namer }, object, (err, result) => {
+      console.log(result);
+      callback(result);
+      db.close()
+    })
+  })
+}
+
+function userAdder(object, callback) {
+  console.log('1')
+  mongoClient((err, db) => {
+    console.log('2')
+    var collection = db.collection('users');
+    collection.insertMany([object], (err, result) => {
+      console.log("Inserted document into the document collection");
+      callback(result);
+      db.close()
+    })
+  })
+}
+
+function adder(object, callback) {
+  console.log('1')
+  mongoClient((err, db) => {
+    console.log('2')
+    var collection = db.collection('testMarkers');
+    collection.insertMany([object], (err, result) => {
+      console.log("Inserted document into the document collection");
+      callback(result);
+      db.close()
+    })
+  })
+}
+
+function deleter(callback) {
+  mongoClient((err, db) => {
+    var collection = db.collection('users');
+    db.dropDatabase(collection)
+    var collection2 = db.collection('testMarkers');
+    db.dropDatabase(collection2)
+    console.log("all deleted");
+    findDocuments(db, callback)
+  })
+}
+
+function queryUsers(callback) {
+  mongoClient((err, db) => {
+    findUsers(db, callback);
+  });
+}
 
 function findAll(callback) {
-  var values = [];
-  mongoClient(function(err, db) {
-  if (err) throw err;
-  var collection = db.collection(collectionName)
-    .find({})
-    .toArray(function(err, docs) {
-      if (err) throw err;
-      callback(docs);
-      db.close();
-    });
-});
-return values;
+  mongoClient((err, db) => {
+    findDocuments(db, callback);
+  });
 }

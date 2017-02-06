@@ -15,7 +15,7 @@ getDataPromise()
     JSON.stringify(result);
     mapLoad(result);
   })
-  .catch((error) => console.error(error))
+  .catch((error) => console.log(error))
 
 function getDataPromise() {
   return new Promise((resolve, reject) => {

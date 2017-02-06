@@ -1,8 +1,10 @@
-(function() {
-  var MongoClient, mongodb;
-  mongodb = require('mongodb');
-  MongoClient = mongodb.MongoClient;
-  exports.mongoClient = function(callback) {
+const mongodb = require('mongodb')
+const MongoClient = mongodb.MongoClient
+
+function connect() {
+  exports.mongoClient = (callback) => {
     MongoClient.connect('mongodb://localhost:27017/myproject', callback);
   };
-}).call(this);
+}
+
+connect()

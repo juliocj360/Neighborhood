@@ -13,16 +13,105 @@ h1 {
 }
 
 #map {
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 500px;
   margin: auto;
   color: black;
 }
 
 .main {
-  width: 406px;
+  width: 506px;
   margin: auto;
+  height: 600px;
   background-color: black;
   color: white;
   padding-bottom: 100px;
+}
+
+.button {
+  padding: 10px;
+  margin: 10px 30px;
+  display: inline-block;
+  background-color: #363c47;
+  cursor: pointer;
+}
+
+.user {
+  padding: 5px;
+  margin: 10px;
+  display: inline-block;
+  color: #363c47;
+  cursor: pointer;
+}
+
+.bottom,
+.users {
+  padding: 10px;
+  text-align: center;
+  margin: auto;
+}
+
+#inputter,
+#show-location {
+  position: absolute;
+  margin: 260px 103px;
+  height: 80px;
+  width: 300px;
+  background-color: rgba(33,132,38,.6);
+  z-index: 100;
+  display: none;
+}
+
+#icon-row {
+  padding: 10px 5px;
+}
+
+#like-row {
+  padding: 10px 40px;
+}
+
+.icon-input {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin: 2px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.animated {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+.like-input {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin: 2px 25px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+#submit-div {
+  text-align: center;
+  padding: 20px;
+  font-size: 40px;
 }
